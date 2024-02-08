@@ -7,7 +7,12 @@ export default function SignUpForm({ token, setToken }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    if (!username || username.length < 8 || !password || password.length < 8) {
+      alert(
+        "Please make sure both username and password are at least 8 characters long"
+      );
+      return;
+    }
     try {
       const response = await fetch(
         "https://fsa-jwt-practice.herokuapp.com/signup",
